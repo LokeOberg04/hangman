@@ -1,14 +1,16 @@
 import javax.swing.*;
+import java.sql.SQLOutput;
 
 public class hangman {
     public static void main(String[] args) {
 
         String word = JOptionPane.showInputDialog("Word?");
+        String wrongletter = "";
         String underscore = "";
         String guess = "";
         char letterguess = 0;
         String wordguess = "";
-        int lives = 3;
+        int lives = 6;
         int correct = 0;
         char[] letters = new char[word.length()];
 
@@ -48,8 +50,10 @@ public class hangman {
                     }
                 }
                 if (correct == 0) {
-                    lives = lives - 1;
+                    wrongletter += " " + letterguess;
+                    lives -= 1;
                     System.out.println("Your letter was wrong\n" + "You have " + lives + " lives left");
+                    System.out.println("You have already guessed" + wrongletter);
                 } else {
                     correct = 0;
                 }
